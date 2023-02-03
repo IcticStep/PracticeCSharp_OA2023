@@ -1,22 +1,19 @@
-﻿namespace Task1_1;
+﻿using Common;
+
+namespace Task1_1;
 
 public static class Program
 {
+    private const string ExampleText = "Порушення академічної доброчесності під час виконання контрольних завдань призведе до";
+
     public static void Main()
     {
-        const string exampleText = "Порушення академічної доброчесності під час виконання контрольних завдань призведе до";
-        const int lastWordsCount = 5;
-        
-        var array = exampleText.Split(" ");
-        Console.WriteLine($"Використаний текст:\n{exampleText}\n");
+        var array = ExampleText.Split(" ");
+        Console.WriteLine($"Початковий текст(Масив B[10]):");
+        Outputter.ShowCollection(array);
 
-        var lastWordsCharactersAmount = SumLastWordsCharacters(array, lastWordsCount);
-        Console.WriteLine($"Кількість букв у {lastWordsCount} останніх словах:\n{lastWordsCharactersAmount}.");
+        var reversedArray = array.Reverse().ToArray();
+        Console.WriteLine($"\nТекст в зворотньому порядку(Масив C[10]):");
+        Outputter.ShowCollection(reversedArray);
     }
-
-    private static int SumLastWordsCharacters(IEnumerable<string> collection, int lastWordsCount) => 
-        collection
-            .TakeLast(lastWordsCount)
-            .Select(text => text.Length)
-            .Sum();
 }

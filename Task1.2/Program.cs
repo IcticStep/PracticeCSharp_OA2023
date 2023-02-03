@@ -1,34 +1,23 @@
-﻿using System.Text;
+﻿using System.Text.RegularExpressions;
 
 namespace Task1_2;
 
 public static class Program
 {
+    private const string ExampleText = "Порушення академічної доброчесності під час виконання контрольних завдань призведе до";
+    private static readonly char[] _searchLetters = { 'а', 'о' } ;
+
     public static void Main()
     {
-        const string exampleTest = "РечЕнНя, Де Всі СлоВа ПочиНаюТсья З ВеликОї БуКВи І Ще Є ДоДаТКові.";
-        
-        Console.WriteLine($"Використаний текст:\n{exampleTest}\"");
-        var proceeded = ProceedTextDowncasing(exampleTest);
-        Console.WriteLine($"Текст після приведення до нижнього регістру всіх літер, окрім першої:\n{proceeded}");
+        Console.WriteLine($"Початковий текст: {ExampleText}");
+
+        Console.WriteLine($"Кількість літер у тексті:");
+        foreach (var letter in _searchLetters)
+            Console.WriteLine($"\t{_searchLetters}: {CountLettersAmount(ExampleText, letter)} шт.");
     }
 
-    private static string ProceedTextDowncasing(string text)
-    {
-        var words = text.Split(" ");
-        var result = new StringBuilder();
-        
-        foreach (var word in words)
-            result.Append(DowncaseWordExceptOfFirstCharacter(word) + " ");
-
-        result.Remove(result.Length - 1, 1);
-        return result.ToString();
-    }
-
-    private static string DowncaseWordExceptOfFirstCharacter(string word)
-    {
-        if (word.Length <= 1)
-            return word;
-        return word.First() + string.Concat(word.ToLower().Skip(1));
-    }
+    private static int CountLettersAmount(string text, char letter) =>
+        new Regex(letter.ToString(), RegexOptions.IgnoreCase)
+            .Matches(text)
+            .Count;
 }
