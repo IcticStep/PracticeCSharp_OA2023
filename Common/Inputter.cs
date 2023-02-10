@@ -2,7 +2,7 @@
 
 public static class Inputter
 {
-    public static void GetInput(string message, out double input)
+    public static void GetInput(in string message, out double input)
     {
         do
             Console.Write(message);
