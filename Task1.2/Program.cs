@@ -13,10 +13,9 @@ public static class Program
         Outputter.Init();
 
         Console.WriteLine($"Початковий текст: {ExampleText}");
-
-        Console.WriteLine($"Кількість літер у тексті:");
+        Console.WriteLine("Кількість літер у тексті:");
         foreach (var letter in _searchLetters)
-            Console.WriteLine($"\t{_searchLetters}: {CountLettersAmount(ExampleText, letter)} шт.");
+            Console.WriteLine($"\t{letter}: {CountLettersAmount(ExampleText, letter)} шт.");
     }
 
     private static int CountLettersAmount(string text, char letter) =>
