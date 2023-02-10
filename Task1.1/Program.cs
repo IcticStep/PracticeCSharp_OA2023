@@ -8,6 +8,7 @@ public static class Program
 
     public static void Main()
     {
+        Outputter.Init();
         var array = ExampleText.Split(" ");
         Console.WriteLine($"Початковий текст(Масив B[10]):");
         Outputter.ShowCollection(array);

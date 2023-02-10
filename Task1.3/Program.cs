@@ -10,6 +10,7 @@ public static class Program
     
     public static void Main()
     {
+        Outputter.Init();
         Console.WriteLine($"Початковий текст:\n{ExampleText}\n");
 
         var wordsInLimit = GetWordsShorterThan(ExampleText, CharacterLimit);

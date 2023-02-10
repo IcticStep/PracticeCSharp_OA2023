@@ -10,6 +10,7 @@ namespace Task2_1
         
         public static void Main()
         {
+            Outputter.Init();
             Inputter.GetInput("Введіть значення t для обчислення виразу: ", out double t);
             
             var solutionX = _equationSolver.Solve(_equationX);

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Common;
+using System.Text.RegularExpressions;
 
 namespace Task1_2;
 
@@ -9,6 +10,8 @@ public static class Program
 
     public static void Main()
     {
+        Outputter.Init();
+
         Console.WriteLine($"Початковий текст: {ExampleText}");
 
         Console.WriteLine($"Кількість літер у тексті:");

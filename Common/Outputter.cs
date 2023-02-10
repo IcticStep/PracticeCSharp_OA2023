@@ -8,4 +8,10 @@ public static class Outputter
             Console.Write(word+" ");
         Console.WriteLine("\b");
     }
+
+    public static void Init()
+    {
+        Console.OutputEncoding = System.Text.Encoding.Unicode;
+        Console.InputEncoding = System.Text.Encoding.Unicode;
+    }
 }
