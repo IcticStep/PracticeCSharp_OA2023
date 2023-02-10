@@ -5,7 +5,7 @@ namespace Task1_3;
 
 public static class Program
 {
-    private const string ExampleText = "Some, english, words, ultralongword, kind, yellow, fight, night, four.";
+    private const string ExampleText = "Some, english, words, kind, yellow, fight, night, four, umbrella, rainbow, magnify.";
     private const int CharacterLimit = 8;
     
     public static void Main()
