@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.1_binaryStream", "Tas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.1_common", "Task3.1_common\Task3.1_common.csproj", "{9335817C-697F-4035-81AA-FDDF5283A880}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.2", "Task3.2\Task3.2.csproj", "{CC0AE4B5-FA0D-472B-BE30-A4834BE196E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{9335817C-697F-4035-81AA-FDDF5283A880}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9335817C-697F-4035-81AA-FDDF5283A880}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9335817C-697F-4035-81AA-FDDF5283A880}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0AE4B5-FA0D-472B-BE30-A4834BE196E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0AE4B5-FA0D-472B-BE30-A4834BE196E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0AE4B5-FA0D-472B-BE30-A4834BE196E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0AE4B5-FA0D-472B-BE30-A4834BE196E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
