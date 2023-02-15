@@ -52,7 +52,7 @@ public class TapeRecorder : ITableItem
         City,
         Year.ToString(),
         Type.GetDisplayName(),
-        _price.ToString(CultureInfo.InvariantCulture),
+        _price.ToString(CultureInfo.InvariantCulture) + "$",
         _count.ToString()
     };
 }

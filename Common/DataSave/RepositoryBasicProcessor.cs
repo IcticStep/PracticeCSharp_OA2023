@@ -7,7 +7,7 @@ public class RepositoryBasicProcessor<T> where T : ITableItem
 {
     private readonly IRepository<T> _repository;
     private readonly string _header;
-    
+
     public RepositoryBasicProcessor(IRepository<T> repository, string header)
         => (_repository, _header) = (repository, header);
     
