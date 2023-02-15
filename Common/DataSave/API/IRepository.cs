@@ -1,4 +1,4 @@
-﻿namespace Common.DataSave;
+﻿namespace Common.DataSave.API;
 
 public interface IRepository<T> : IEnumerable<T>
 {
