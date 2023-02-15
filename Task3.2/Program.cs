@@ -1,28 +1,31 @@
 ﻿using Common;
+using Common.DataSave;
 using Common.Extensions;
 using Common.Menu;
-using Common.Tables;
 
 namespace Task3_2;
 
 public static class Program
 {
-    private static readonly FileRepository _repository = new("tapeRecorders.txt");
-    private static List<TapeRecorder> _records = new();
+    private static readonly IRepository<TapeRecorder> _repository = 
+        new PersistantRepository<TapeRecorder>("tapeRecorders.txt");
+
+    private static readonly RepositoryBasicProcessor<TapeRecorder>
+        _repositoryProcessor = new(_repository, "Магнітофони");
 
     private static readonly Menu _menu = new("Облік магнітофонів", new Option []
     {
-        new("Переглянути всі", ShowAll),
+        new("Переглянути всі", _repositoryProcessor.ShowAll),
         new("Переглянути за категорією", ShowByType),
         new("Додати запис", AddRecord),
-        new("Вилучити запис", RemoveRecord),
+        new("Вилучити запис", _repositoryProcessor.RemoveRecord),
         new("Вийти", Exit)
     });
 
     public static void Main()
     {
         Init();
-        LoadRecords();
+        _repositoryProcessor.CheckLoadedResources();
         
         while(true)
             _menu.Launch();
@@ -34,33 +37,9 @@ public static class Program
         Outputter.Init();
     }
 
-    private static void LoadRecords()
-    {
-        var loadedData = _repository.Load<TapeRecorder>();
-
-        if (loadedData == null)
-        {
-            Console.WriteLine("Файл записів відсутній. Програма створить новий, коли ви щось додасте.");
-            return;
-        }
-
-        _records = loadedData.ToList();
-    }
-
-    private static void ShowAll()
-    {
-        if (!_records.Any())
-        {
-            Console.WriteLine("Записи відсутні.");
-            return;
-        }
-        
-        ShowTable("Магнітофони", _records);
-    }
-
     private static void ShowByType()
     {
-        if (!_records.Any())
+        if (!_repository.Any())
         {
             Console.WriteLine("Записи відсутні.");
             return;
@@ -68,7 +47,7 @@ public static class Program
         
         var selectedType = GetInputType();
         var selectedTypeName = selectedType.GetDisplayName();
-        var filteredRecords = _records.Where(recorder => recorder.Type == selectedType);
+        var filteredRecords = _repository.Where(recorder => recorder.Type == selectedType);
         
         if (!filteredRecords.Any())
         {
@@ -76,7 +55,7 @@ public static class Program
             return;
         }
         
-        ShowTable($"Магнітофони типу \"{selectedTypeName}\"", filteredRecords);
+        _repositoryProcessor.ShowTable($"Магнітофони типу \"{selectedTypeName}\"", filteredRecords);
     }
 
     private static void AddRecord()
@@ -93,31 +72,7 @@ public static class Program
         Inputter.GetInput("Кількість: ", out var count, 0);
 
         var record = new TapeRecorder(name, manufacturer, city, year, type, price, count);
-        _records.Add(record);
-        SaveData();
-    }
-
-    private static void RemoveRecord()
-    {
-        if (!_records.Any())
-        {
-            Console.WriteLine("Записи відсутні.");
-            return;
-        }
-        
-        Console.WriteLine("Видалення об'єкту");
-        Inputter.GetInput("Введіть номер запису, який треба видалити або 0 щоб відмінити видалення: ",
-            out var input, 0, _records.Count);
-
-        if (input == 0)
-        {
-            Console.WriteLine("Відміна видалення.");
-            return;
-        }
-
-        _records.RemoveAt(input - 1);
-        SaveData();
-        Console.WriteLine("Видалення пройшло успішно.");
+        _repository.Add(record);
     }
 
     private static void Exit()
@@ -125,11 +80,6 @@ public static class Program
         Console.WriteLine("Гарного дня! ;)");
         Environment.Exit(0);
     }
-
-    private static void ShowTable(string name, IEnumerable<TapeRecorder> tapeRecorders) 
-        => new TableOutput(name, tapeRecorders).Show();
-
-    private static void SaveData() => _repository.Save(_records);
 
     private static Type GetInputType()
     {
