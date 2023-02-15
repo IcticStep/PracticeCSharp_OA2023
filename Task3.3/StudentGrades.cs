@@ -1,4 +1,5 @@
-﻿using Common.Tables.API;
+﻿using System.Text.Json.Serialization;
+using Common.Tables.API;
 
 namespace Task3_3;
 
@@ -11,6 +12,7 @@ public class StudentGrades : ITableItem
     public int ProbabilitiesAndStatistics { get; }
     public int Philosophy { get; }
 
+    [JsonIgnore]
     public IEnumerable<int> Grades => new[] { Math, Programming, ProbabilitiesAndStatistics, Philosophy };
 
     [NonSerialized]

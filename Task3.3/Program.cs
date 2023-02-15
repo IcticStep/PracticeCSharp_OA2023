@@ -69,6 +69,7 @@ public static class Program
 
         var record = new StudentGrades(name, math, programming, probabilitiesAndStatistics, philosophy);
         _repository.Add(record);
+        Console.WriteLine("\nУспішно додано.\n");
     }
 
     private static void Exit()

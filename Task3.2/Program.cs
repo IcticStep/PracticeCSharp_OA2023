@@ -73,6 +73,7 @@ public static class Program
 
         var record = new TapeRecorder(name, manufacturer, city, year, type, price, count);
         _repository.Add(record);
+        Console.WriteLine("\nУспішно додано.\n");
     }
 
     private static void Exit()
