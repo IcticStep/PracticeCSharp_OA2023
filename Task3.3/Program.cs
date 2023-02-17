@@ -2,7 +2,6 @@
 using Common.DataSave;
 using Common.DataSave.API;
 using Common.Menu;
-using Common.Tables;
 
 namespace Task3_3;
 
@@ -19,7 +18,7 @@ public static class Program
         new("Переглянути всі оцінки", _repositoryProcessor.ShowAll),
         new("Переглянути студентів, що не склали жодного іспиту", ShowFailedStudents),
         new("Додати запис", AddRecord),
-        new("Вилучити запис", _repositoryProcessor.RemoveRecord),
+        new("Вилучити запис(за глобальним номером)", _repositoryProcessor.RemoveRecord),
         new("Вийти", Exit)
     });
 
@@ -62,7 +61,7 @@ public static class Program
     private static void AddRecord()
     {
         Console.WriteLine("\tДодавання нового запису в базу");
-        Inputter.GetInput("ПІБ:", out var name);
+        Inputter.GetInput("ПІБ:", out string name);
         Inputter.GetInput("Оцінка за математику(від 1 до 5):", out var math, 1, 5);
         Inputter.GetInput("Оцінка за прогармування(від 1 до 5):", out var programming, 1, 5);
         Inputter.GetInput("Оцінка за ТІМС(від 1 до 5):", out var probabilitiesAndStatistics, 1, 5);

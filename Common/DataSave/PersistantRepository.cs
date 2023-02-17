@@ -37,6 +37,9 @@ public class PersistantRepository<T> : IRepository<T>
     public int Count() => _collection.Count;
 
     public bool IsEmpty() => _collection.Count == 0;
+    public void ForceSave() => Save();
+
+    public T this[int index] => _collection[index];
 
     private void Load()
     {

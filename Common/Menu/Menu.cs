@@ -40,7 +40,7 @@ public class Menu
 
     private void GetInput()
     {
-        Inputter.GetInput($"\t{InputHint}", out var input, 1, _options.Count + 1);
+        Inputter.GetInput($"\t{InputHint}", out var input, 1, _options.Count);
         Input = --input;
     }
 

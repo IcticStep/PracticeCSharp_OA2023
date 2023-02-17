@@ -12,11 +12,10 @@ public class RepositoryBasicProcessor<T> where T : ITableItem
     public RepositoryBasicProcessor(IRepository<T> repository, string header)
         => (_repository, _header) = (repository, header);
     
-
     public void CheckLoadedResources() =>
         Console.WriteLine(_repository.IsEmpty()
-            ? "Файл записів відсутній. Програма створить новий, коли ви щось додасте."
-            : $"Файл успішно завантажено. В системі {_repository.Count()} записів.");
+            ? $"Записи в базі '{_header}' відсутні."
+            : $"Записи '{_header}' успішно завантажено. В системі {_repository.Count()} записів.");
 
     public void ShowAll()
     {
@@ -51,6 +50,13 @@ public class RepositoryBasicProcessor<T> where T : ITableItem
         Console.WriteLine("Видалення пройшло успішно.");
     }
 
-    public void ShowTable(string name, IEnumerable<ITableItem> tapeRecorders) 
-        => new TableOutput(name, tapeRecorders).Show();
+    public void ShowTable(string name, IEnumerable<ITableItem> tapeRecorders)
+    {
+        if (!tapeRecorders.Any())
+        {
+            Console.WriteLine("Записи відсутні.");
+            return;
+        }
+        new TableOutput(name, tapeRecorders).Show();
+    }
 }

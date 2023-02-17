@@ -5,8 +5,8 @@ namespace Common.Tables;
 
 public class TableOutput
 {
-    private const char _horizontalSymbol = '-';
-    private const char _verticalSymbol = '|';
+    private const char HorizontalSymbol = '-';
+    private const char VerticalSymbol = '|';
 
     private readonly string _mainHeader;
     private string[] _headers;
@@ -58,9 +58,9 @@ public class TableOutput
 
     private void CalculateRows(IEnumerable<ITableItem> tableData) 
         => _rows = tableData.Select((item, num) =>  item
-                .GetFullInfo()
-                .Prepend((num+1).ToString())
-                .ToArray());
+            .GetFullInfo()
+            .Prepend((num+1).ToString())
+            .ToArray());
 
     private void ValidateRowsAndHeaders()
     {
@@ -89,7 +89,7 @@ public class TableOutput
         var result = new StringBuilder();
         
         for (var i = 0; i < targetLenght; i++)
-            result.Append(_horizontalSymbol);
+            result.Append(HorizontalSymbol);
         
         _horizontalBorder = result.ToString();
     }
@@ -103,11 +103,11 @@ public class TableOutput
         for (var i = 0; i < row.Length; i++)
         {
             var length = _columnsLengths[i];
-            var column = string.Format($"{_verticalSymbol} {{0,-{length}}}", row[i]);
+            var column = string.Format($"{VerticalSymbol} {{0,-{length}}}", row[i]);
             result.Append(column);
         }
 
-        result.Append(_verticalSymbol);
+        result.Append(VerticalSymbol);
         return result.ToString();
     }
 

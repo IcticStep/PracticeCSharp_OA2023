@@ -46,6 +46,13 @@ public static class Inputter
         while (string.IsNullOrEmpty(input)); 
     }
 
+    public static void GetInput(string message, out bool input)
+    {
+        var menu = new Menu.Menu(message, new[] { "Так", "Ні" });
+        menu.Launch();
+        input = menu.Input == 0;
+    }
+
     private static bool IsInRange(int num, int min, int max) => num >= min && num <= max;
     private static bool IsInRange(double num, double min, double max) => num >= min && num <= max;
     private static bool IsInRange(uint num, uint min, uint max) => num >= min && num <= max;
