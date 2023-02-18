@@ -64,7 +64,7 @@ public static class Program
         var maxYear = Convert.ToUInt32(DateTime.Today.Year);
         
         Console.WriteLine("\tДодавання нового запису в базу");
-        Inputter.GetInput("Ім'я:", out string name);
+        Inputter.GetInput("Назва:", out string name);
         Inputter.GetInput("Виробник:", out string manufacturer);
         Inputter.GetInput("Місто:", out string city);
         Inputter.GetInput("Рік:", out var year, 0, maxYear);

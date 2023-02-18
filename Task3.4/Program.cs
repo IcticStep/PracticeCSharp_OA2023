@@ -78,8 +78,14 @@ public static class Program
     {
         Console.WriteLine("\tСтворення життя на планеті.");
         var input = _planetModifier.GetPlanetInputForAction(_planetsRepository, "створити життя");
+        if (input == 0)
+        {
+            Console.WriteLine("Дія відмінена.");
+            return;
+        }
+
         var planet = _planetsRepository[input - 1];
-        
+
         if (planet.Habitable)
         {
             Console.WriteLine("Обрана планета і так придатна для життя. Нічого більш створено не було.");
